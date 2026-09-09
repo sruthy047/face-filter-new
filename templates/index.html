@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FACEFUN AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>FACEFUN AI</h1>
+            <p>Turn your face into something fun!</p>
+        </header>
+
+        <main class="main-content">
+            <div class="video-container">
+                <video id="webcam" autoplay playsinline style="display: none;"></video>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <img id="output" alt="Waiting for camera..." />
+                
+                <div class="overlay-glass">
+                    <span class="live-indicator">LIVE CAMERA</span>
+                </div>
+            </div>
+
+            <div class="controls-panel">
+                <div class="panel-section">
+                    <h2>Filter buttons</h2>
+                    <div class="filters-grid">
+                        <button class="filter-btn" data-filter="sunglasses">
+                            <span class="icon">😎</span>
+                            <span class="text">Sunglasses [1]</span>
+                        </button>
+                        <button class="filter-btn" data-filter="cat">
+                            <span class="icon">🐱</span>
+                            <span class="text">Cat [2]</span>
+                        </button>
+                        <button class="filter-btn" data-filter="crown">
+                            <span class="icon">👑</span>
+                            <span class="text">Crown [3]</span>
+                        </button>
+                        <button class="filter-btn" data-filter="heart_eyes">
+                            <span class="icon">😍</span>
+                            <span class="text">Heart Eyes [4]</span>
+                        </button>
+                        <button class="filter-btn" data-filter="mustache">
+                            <span class="icon">🥸</span>
+                            <span class="text">Mustache [5]</span>
+                        </button>
+                        <button class="filter-btn" data-filter="robot">
+                            <span class="icon">🤖</span>
+                            <span class="text">Robot [6]</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2>Controls</h2>
+                    <div class="controls-grid">
+                        <button id="btn-start" class="control-btn primary">Start Camera</button>
+                        <button id="btn-stop" class="control-btn danger">Stop Camera</button>
+                        <button id="btn-take" class="control-btn">Take Photo</button>
+                        <button id="btn-download" class="control-btn" disabled>Download Photo</button>
+                        <button id="btn-remove" class="control-btn warning">Remove Filter</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Hidden link used for downloading -->
+    <a id="download-link" style="display:none;"></a>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

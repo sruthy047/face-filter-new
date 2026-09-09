@@ -1,0 +1,232 @@
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --primary-color: #3b82f6;
+    --accent-color: #8b5cf6;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --danger: #ef4444;
+    --warning: #f59e0b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top left, #1e1b4b, #0f172a 70%);
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    background: linear-gradient(to right, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    font-weight: 300;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+@media (min-width: 900px) {
+    .main-content {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 4/3;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--glass-border);
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#output {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.1s ease;
+}
+
+.overlay-glass {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
+    border-radius: 24px;
+}
+
+.live-indicator {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(0,0,0,0.6);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ef4444;
+    letter-spacing: 1px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.controls-panel {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.panel-section {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 1.5rem;
+}
+
+.panel-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    color: #e2e8f0;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+/* Filters Grid */
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    padding: 0.75rem;
+    border-radius: 16px;
+    color: var(--text-color);
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s;
+}
+
+.filter-btn .icon {
+    font-size: 2rem;
+}
+
+.filter-btn .text {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
+
+.filter-btn.active .text {
+    color: #fff;
+}
+
+/* Controls Grid */
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.controls-grid button:last-child {
+    grid-column: span 2;
+}
+
+.control-btn {
+    padding: 0.75rem;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.control-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.control-btn.primary {
+    background: rgba(59, 130, 246, 0.4);
+    border-color: var(--primary-color);
+}
+.control-btn.danger {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: var(--danger);
+}
+.control-btn.warning {
+    background: rgba(245, 158, 11, 0.3);
+    border-color: var(--warning);
+}
